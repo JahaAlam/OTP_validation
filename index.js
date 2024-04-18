@@ -1,7 +1,9 @@
 
 
 let genaratedOTP;
-const otpExpireElem = document.getElementById("otp-expires-id");
+let typedNumber;
+let otpExpireElem = document.getElementById("otp-expires-id");
+let otpElem = document.getElementById("genarated-otp-id");
 
 function expireOTP(){
     const totalTime = 15000;
@@ -16,7 +18,9 @@ function expireOTP(){
     setTimeout(function(){
         otpExpireElem.innerText = "OTP Expired"
         clearInterval(intervalId);
-        genarateOTP();
+        if(!result){
+            genarateOTP();
+        }
     }, totalTime);
 }
 
@@ -44,8 +48,8 @@ function tackleOTPBoxes()
 
 function genarateOTP(){
      genaratedOTP = Math.floor( 1000 + Math.random()*9000);
-    //console.log(genaratedOTP);
-    const otpElem = document.getElementById("genarated-otp-id");
+    //const otpElem = document.getElementById("genarated-otp-id");
+    //let otpElem = document.getElementById("genarated-otp-id");
     otpElem.innerText = `Your OTP: ${genaratedOTP}`;
     expireOTP();
 
@@ -58,14 +62,18 @@ function validateOTP(){
        typedNumber = typedNumber +  elem.value; 
     })
 
-    console.log(typedNumber, genaratedOTP);
+   // console.log(typedNumber, genaratedOTP);
 
     const result = (genaratedOTP === parseInt (typedNumber, 10));
     const resultElem = document.getElementById("result-id");
+    //const expiredElm = document.getElementById("otp-expires-id");
     if(result){
         resultElem.innerText = "OTP has been validate successfully";
         resultElem.classList.remove("fail");
         resultElem.classList.add("success");
+        otpElem.style.display = "none";
+        otpExpireElem.style.display = "none";
+
 
     }else{
         resultElem.innerText = "OTP is invalid";
