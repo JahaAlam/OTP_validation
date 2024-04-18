@@ -8,8 +8,31 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+border: 2px solid red;
 }
 
 .otp-box-list {
     display: flex;
+}
+
+.otp-box-list .otp-box {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px 2px teal;
+    border: none;
+    border-radius: 10px;
+}
+.otp-validate-message {
+    border-radius: 5px;
+    padding: 2px;
+}
+.otp-validate-message.success {
+    border: 1px solid green;
+    color: green;
+}
+.otp-validate-message.fail {
+    border: 1px solid red;
+    color: red;
 }
